@@ -1,8 +1,13 @@
 #include <WEMOS_Matrix_LED.h>
+#include <ESP8266WiFi.h>
 
+#include "wifi_settings.h"
+#include "wifi.h"
 #include "sequences.h"
 
 #define BUZZER_PIN 5
+
+WiFiServer server(80);
 
 byte sequence[4][8]; // Sequences are 4 frames
 unsigned int framerate = 1000; // Default time for each frame
@@ -27,15 +32,44 @@ bool idleMode = true; // Is there an event ongoing
 MLED mled(1);
 
 void setup() {
+  Serial.begin(115200);
+
   resetMatrix();
   idle();
+
+  setupWifi();
+
+  server.begin();
+  Serial.println("Server started");
+  Serial.println(WiFi.localIP());
 }
 
 void loop() {
   currentMillis = millis();
   updateEvents();
   updateAnimation();
-  updateMelody(); 
+  updateMelody();
+
+  updateWebQuery();
+}
+
+void updateWebQuery() {
+  // Check if a client has connected
+  WiFiClient client = server.available();
+  if (!client || !client.available()) {
+    return;
+  }
+
+  // Read the first line of the request
+  String req = client.readStringUntil('\r');
+  Serial.println(req);
+  client.flush();
+
+  // Prepare the response
+  String s = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n<!DOCTYPE HTML>\r\n<html>\r\nPuyotchi</html>\n";
+
+  // Send the response to the client
+  client.print(s); 
 }
 
 void updateEvents() {

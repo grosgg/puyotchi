@@ -4,6 +4,7 @@
 #include "wifi_settings.h"
 #include "wifi.h"
 #include "sequences.h"
+#include "web_page.h"
 
 #define BUZZER_PIN 5
 
@@ -56,8 +57,11 @@ void loop() {
 void updateWebQuery() {
   // Check if a client has connected
   WiFiClient client = server.available();
-  if (!client || !client.available()) {
+  if (!client) {
     return;
+  }
+  while (!client.available()) {
+    delay(1); // Stopping the clock for only 1ms should not be visible
   }
 
   // Read the first line of the request
@@ -65,11 +69,13 @@ void updateWebQuery() {
   Serial.println(req);
   client.flush();
 
-  // Prepare the response
-  String s = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n<!DOCTYPE HTML>\r\n<html>\r\nPuyotchi</html>\n";
+  // Match the request
+  if (req.indexOf("/roll") != -1) {
+    // roll();
+  }
 
   // Send the response to the client
-  client.print(s); 
+  client.print(getPage()); 
 }
 
 void updateEvents() {

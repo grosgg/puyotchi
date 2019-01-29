@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <link href='https://fonts.googleapis.com/css?family=Press+Start+2P' rel='stylesheet'>
+    <link href='https://unpkg.com/nes.css/css/nes.min.css' rel='stylesheet'>
+    <style>
+      body { margin: 1rem; }
+      .nes-container { margin-bottom: 1rem; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Puyotchi</h1>
+    </header>
+    <section class='nes-container with-title'>
+      <h2 class='title'>Status</h2>
+      <div>
+        <div class='paragraph'>
+          <label>Hunger</label>
+          <progress class='nes-progress is-error' value='80' max='100'></progress>
+        </div>
+        <div class='paragraph'>
+          <label>Happiness</label>
+          <progress class='nes-progress is-success' value='60' max='100'></progress>
+        </div>
+      </div>
+    </section>
+    <section class='nes-container with-title'>
+      <h2 class='title'>Actions</h2>
+      <div>
+        <a href='feed'><button type='button' class='nes-btn is-error'>Feed</button></a>
+        <a href='wash'><button type='button' class='nes-btn is-primary'>Wash</button></a>
+      </div>
+    </section>
+    <section class='nes-container with-title'>
+      <h2 class='title'>Settings</h2>
+      <div>
+        <label>Mute</label>
+        <div>
+          <label>
+            <input type='radio' class='nes-radio' name='mute' checked>
+            <span>Yes</span>
+          </label>
+          <label>
+            <input type='radio' class='nes-radio' name='mute'>
+            <span>No</span>
+          </label>
+        </div>
+
+        <label>Auto Mode</label>
+        <div>
+          <label>
+            <input type='radio' class='nes-radio' name='auto' checked>
+            <span>Yes</span>
+          </label>
+          <label>
+            <input type='radio' class='nes-radio' name='auto'>
+            <span>No</span>
+          </label>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

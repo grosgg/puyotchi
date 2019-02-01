@@ -65,3 +65,54 @@ byte NO_SEQUENCE[4][8] = {
   { 0x97, 0xd5, 0xb7, 0x00, 0x7e, 0x81, 0x93, 0x8d },
   { 0x97, 0xd5, 0xb7, 0x00, 0x7e, 0x81, 0xc9, 0xb1 },
 };
+
+// Set sequence to start displaying
+void setSequence(byte frameArray[][8], int framerateInt) {
+  for(uint8_t x = 0; x < 4; x++) {
+    for(uint8_t y = 0; y < 8; y++) {
+      sequence[x][y] = frameArray[x][y];
+    }
+  }
+  framerate = framerateInt;
+  currentFrame = 0;
+}
+
+void goIdle() {
+  setSequence(IDLE_SEQUENCE, 700);
+  isIdle = true;
+  isActionEvent = false;
+  isRandomEvent = false;
+}
+
+void excited() {
+  setSequence(EXCITED_SEQUENCE, 700);
+}
+
+void happy() {
+  setSequence(HAPPY_SEQUENCE, 700);
+}
+
+void unhappy() {
+  setSequence(UNHAPPY_SEQUENCE, 900);
+}
+
+void look() {
+  setSequence(LOOK_SEQUENCE, 1000);
+}
+
+void roll() {
+  setSequence(ROLL_SEQUENCE, 400);
+}
+
+void ok() {
+  setSequence(OK_SEQUENCE, 500);
+}
+
+void no() {
+  setSequence(NO_SEQUENCE, 500);
+}
+
+void rain() {
+  setSequence(RAIN_SEQUENCE, 200);
+}
+

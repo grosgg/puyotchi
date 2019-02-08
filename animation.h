@@ -8,7 +8,7 @@ void setBuffer(byte hexArray[]) {
 // Display next frame on framerate
 void updateAnimation() {
   if (currentMillis - animationMillis >= framerate) {
-    Serial.println("New frame");
+    // Serial.println("New frame");
     setBuffer(sequence[currentFrame]);
     if (currentFrame >= 3) {
       currentFrame = 0;

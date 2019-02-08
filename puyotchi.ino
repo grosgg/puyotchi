@@ -1,6 +1,7 @@
 #include <WEMOS_Matrix_LED.h>
 #include <ESP8266WiFi.h>
 #include <ESP8266HTTPClient.h>
+#include <RTClib.h>
 
 #define BUZZER_PIN 5
 MLED mled(1); // LED intensity

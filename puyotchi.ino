@@ -17,7 +17,8 @@ HTTPClient http;
 #include "events.h"
 #include "web_page.h"
 #include "web_server.h"
-#include "http_client.h"
+#include "clock.h"
+#include "alarm.h"
 
 
 void setup() {
@@ -28,16 +29,17 @@ void setup() {
 
   setupWifi();
   setupWebServer();
-  setDateTime();
-
+  initializeDateTime();
 }
 
 void loop() {
   currentMillis = millis();
+  updateClock();
   updateActionEvents();
   updateRandomEvents();
   updateAnimation();
   updateMelody();
+  updateAlarm();
 
   updateWebQuery();
 

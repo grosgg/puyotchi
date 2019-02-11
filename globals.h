@@ -4,6 +4,8 @@ bool automode = false;
 
 bool alarmSetOn = false;
 bool alarmRinging = false;
+unsigned long alarmSnoozeMillis = 0;
+unsigned long alarmRingMillis = 0;
 uint8_t alarmHour = 7;
 uint8_t alarmMinute = 30;
 

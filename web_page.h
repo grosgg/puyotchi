@@ -56,6 +56,7 @@ String getPage() {
   page += "          </div>";
   page += "          <div class='paragraph'>";
   page += "            <button type='submit' class='nes-btn is-primary'>Save</button>";
+  page += "            <a href='/alarm/snooze'><button type='button' class='nes-btn is-error'>Snooze</button></a>";
   page += "          </div>";
   page += "        </form>";
   page += "        <div>";

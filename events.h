@@ -4,6 +4,8 @@ void setRandomEventInterval() {
 }
 
 void setEvent(String eventType, bool isActionTriggered, unsigned int duration) {
+  if (alarmRinging) { return; }
+
   if (eventType == "look") { look(); }
   else if (eventType == "happy") { happy(); }
   else if (eventType == "unhappy") { unhappy(); }

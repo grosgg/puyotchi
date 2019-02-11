@@ -1,10 +1,24 @@
 void updateAlarm() {
-  if (!alarmSetOn || alarmRinging) { return; }
+  if (!alarmSetOn) { return; } // Alarm is disabled
 
-  if (currentTime.hour() == alarmHour && currentTime.minute() == alarmMinute) {
+  if (currentMillis - alarmSnoozeMillis <= 60000) { return; } // Alarm has been snoozed, don't ring
+
+  if (alarmRinging && currentMillis - alarmRingMillis >= 500) {
+    tone(BUZZER_PIN, 2637, noteDuration);
+    alarmRingMillis = currentMillis;
+  }
+
+  if (!alarmRinging && currentTime.hour() == alarmHour && currentTime.minute() == alarmMinute) {
     Serial.println("Alarm triggered!");
     alarmRinging = true;
   }
+}
+
+void snoozeAlarm() {
+  Serial.println("Alarm snoozed.");
+  alarmRinging = false;
+  noTone(BUZZER_PIN);
+  alarmSnoozeMillis = currentMillis;
 }
 
 void setAlarmTime(String req) {

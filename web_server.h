@@ -11,17 +11,23 @@ void updateWebQuery() {
     return;
   }
 
-  while (!client.available()) {
-    delay(1); // Stopping the clock for only 1ms should not be visible
+  if (!client.available()) {
+    delay(10); // Stopping the clock for only 10ms should not be visible
+    if (!client.available()) { return; }
   }
 
   // Read the first line of the request
   String req = client.readStringUntil('\r');
   Serial.println(req);
-  // client.flush();
   
   // Match the request
-  if (req.indexOf("excited") != -1) { setEvent("excited", true, 5000); }
+  if (req.indexOf("automode/toggle") != -1) { automode = !automode; }
+  else if (req.indexOf("mute/toggle") != -1) { mute = !mute; }
+  else if (req.indexOf("alarm/toggle") != -1) { alarmSetOn = !alarmSetOn; }
+  else if (req.indexOf("alarm/snooze") != -1) { snoozeAlarm(); }
+  else if (req.indexOf("alarm/set") != -1) { setAlarmTime(req); }
+
+  else if (req.indexOf("excited") != -1) { setEvent("excited", true, 5000); }
   else if (req.indexOf("roll") != -1) { setEvent("roll", true, 5000); }
   else if (req.indexOf("look") != -1) { setEvent("look", true, 5000); }
   else if (req.indexOf("unhappy") != -1) { setEvent("unhappy", true, 5000); }
@@ -29,13 +35,6 @@ void updateWebQuery() {
   else if (req.indexOf("ok") != -1) { setEvent("ok", true, 5000); }
   else if (req.indexOf("no") != -1) { setEvent("no", true, 5000); }
   else if (req.indexOf("rain") != -1) { setEvent("rain", true, 5000); }
-
-  else if (req.indexOf("automode/toggle") != -1) { automode = !automode; }
-  else if (req.indexOf("mute/toggle") != -1) { mute = !mute; }
-  else if (req.indexOf("alarm/toggle") != -1) { alarmSetOn = !alarmSetOn; }
-  
-  else if (req.indexOf("alarm/set") != -1) { setAlarmTime(req); }
-  // client.flush();
 
   // Get web page template
   String webPage = getPage();

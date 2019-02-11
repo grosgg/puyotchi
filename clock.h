@@ -41,7 +41,7 @@ void updateClock() {
 
   if (currentMillis - clockTickMillis >= clockTickInterval) {
     currentTime = currentTime + TimeSpan(0, 0, 0, clockTickInterval / 1000);
-    Serial.println(currentTime.second());
+    // Serial.println(currentTime.second());
     clockTickMillis = currentMillis;
   }
 }

@@ -2,10 +2,10 @@
 bool mute = false;
 bool automode = false;
 
-bool alarmOn = true;
-bool alarmSnoozed = false;
-uint8_t alarmHour = 13;
-uint8_t alarmMinute = 39;
+bool alarmSetOn = false;
+bool alarmRinging = false;
+uint8_t alarmHour = 7;
+uint8_t alarmMinute = 30;
 
 String timezone = "Tokyo";
 DateTime currentTime (0, 1, 1, 0, 0, 0); // Default time 2000/01/01

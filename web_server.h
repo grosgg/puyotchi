@@ -10,6 +10,7 @@ void updateWebQuery() {
   if (!client) {
     return;
   }
+
   while (!client.available()) {
     delay(1); // Stopping the clock for only 1ms should not be visible
   }
@@ -17,7 +18,7 @@ void updateWebQuery() {
   // Read the first line of the request
   String req = client.readStringUntil('\r');
   Serial.println(req);
-  client.flush();
+  // client.flush();
   
   // Match the request
   if (req.indexOf("excited") != -1) { setEvent("excited", true, 5000); }
@@ -31,7 +32,10 @@ void updateWebQuery() {
 
   else if (req.indexOf("automode/toggle") != -1) { automode = !automode; }
   else if (req.indexOf("mute/toggle") != -1) { mute = !mute; }
-  client.flush();
+  else if (req.indexOf("alarm/toggle") != -1) { alarmSetOn = !alarmSetOn; }
+  
+  else if (req.indexOf("alarm/set") != -1) { setAlarmTime(req); }
+  // client.flush();
 
   // Get web page template
   String webPage = getPage();
@@ -39,6 +43,10 @@ void updateWebQuery() {
   // Fill in setting values
   webPage.replace("id='mute'", mute ? "id='mute' checked" : "id='mute'");
   webPage.replace("id='automode'", automode ? "id='automode' checked" : "id='automode'");
+
+  // Fill in alarm values
+  webPage.replace("00:00", getAlarmTime());
+  webPage.replace("id='alarmSetOn'", alarmSetOn ? "id='alarmSetOn' checked" : "id='alarmSetOn'");
 
   // Fill in debug values
   // webPage.replace("isIdleValue", isIdle ? "true" : "false");

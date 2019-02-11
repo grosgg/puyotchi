@@ -15,10 +15,10 @@ HTTPClient http;
 #include "sequences.h"
 #include "animation.h"
 #include "events.h"
-#include "web_page.h"
-#include "web_server.h"
 #include "clock.h"
 #include "alarm.h"
+#include "web_page.h"
+#include "web_server.h"
 
 
 void setup() {

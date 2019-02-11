@@ -30,7 +30,7 @@ void updateActionEvents() {
   if (isRandomEvent || isIdle) { return; }
 
   if (isActionEvent && (currentMillis - eventMillis >= eventDuration)) {
-    Serial.println("Action goIdle");
+    // Serial.println("Action goIdle");
     setRandomEventInterval();
     goIdle();
   }
@@ -46,7 +46,7 @@ void updateRandomEvents() {
   // Serial.println("eventInterval ");
   // Serial.println(eventInterval);
   if (currentMillis - eventMillis >= eventInterval) {
-    Serial.println("Trigger random event");
+    // Serial.println("Trigger random event");
 
     // Randomly choosing an event
     uint8_t eventType = random(2);
@@ -62,7 +62,7 @@ void updateRandomEvents() {
 
   // When event is done, return to idle mode
   if (isRandomEvent && (currentMillis - eventMillis >= eventDuration)) {
-    Serial.println("Random goIdle");
+    // Serial.println("Random goIdle");
     // Set interval before next event
     setRandomEventInterval();
     goIdle();

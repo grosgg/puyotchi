@@ -17,6 +17,7 @@ HTTPClient http;
 #include "events.h"
 #include "clock.h"
 #include "alarm.h"
+#include "status.h"
 #include "web_page.h"
 #include "web_server.h"
 
@@ -40,6 +41,8 @@ void loop() {
   updateAnimation();
   updateMelody();
   updateAlarm();
+  updateFood();
+  updateSleep();
 
   updateWebQuery();
 

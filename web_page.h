@@ -24,12 +24,12 @@ String getPage() {
   page += "      <h2 class='title'>Status</h2>";
   page += "      <div>";
   page += "        <div class='paragraph'>";
-  page += "          <label>Hunger</label>";
-  page += "          <progress class='nes-progress is-error' value='80' max='100'></progress>";
+  page += "          <label>Food</label>";
+  page += "          <progress class='nes-progress is-error' value='food' max='10'></progress>";
   page += "        </div>";
   page += "        <div class='paragraph'>";
-  page += "          <label>Happiness</label>";
-  page += "          <progress class='nes-progress is-success' value='60' max='100'></progress>";
+  page += "          <label>Sleep</label>";
+  page += "          <progress class='nes-progress is-primary' value='sleep' max='20'></progress>";
   page += "        </div>";
   page += "      </div>";
   page += "    </section>";

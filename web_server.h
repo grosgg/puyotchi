@@ -39,6 +39,10 @@ void updateWebQuery() {
   // Get web page template
   String webPage = getPage();
 
+  // Fill in status values
+  webPage.replace("value='food'", "value=" + String(food));
+  webPage.replace("value='sleep'", "value=" + String(sleep));
+
   // Fill in setting values
   webPage.replace("id='mute'", mute ? "id='mute' checked" : "id='mute'");
   webPage.replace("id='automode'", automode ? "id='automode' checked" : "id='automode'");

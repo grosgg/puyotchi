@@ -4,7 +4,7 @@ void setRandomEventInterval() {
 }
 
 void setEvent(String eventType, bool isActionTriggered, unsigned int duration) {
-  if (alarmRinging) { return; }
+  if (alarmRinging || isSleeping) { return; }
 
   if (eventType == "look") { look(); }
   else if (eventType == "happy") { happy(); }
@@ -15,6 +15,7 @@ void setEvent(String eventType, bool isActionTriggered, unsigned int duration) {
   else if (eventType == "ok") { ok(); }
   else if (eventType == "no") { no(); }
   else if (eventType == "rain") { rain(); }
+  else if (eventType == "eat") { eat(); }
   else { return; }
 
   if (isActionTriggered) { startSequenceMelody(sequence); }

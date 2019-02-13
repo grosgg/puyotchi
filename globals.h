@@ -14,7 +14,7 @@ DateTime currentTime (0, 1, 1, 0, 0, 0); // Default time 2000/01/01
 const uint8_t fingerprint[] = {0xD0, 0x38, 0x24, 0x5A, 0x49, 0x54, 0xFE, 0x2B, 0xAF, 0x19, 0xBE, 0x61, 0xDE, 0x39, 0x74, 0x8C, 0x1A, 0x24, 0xCF, 0xFB};
 
 uint8_t food = 8; // Max is 10
-uint8_t sleep = 8; // Max is 20
+uint8_t sleep = 10; // Max is 20
 unsigned long foodMillis = 0;
 unsigned long sleepMillis = 0;
 unsigned int foodInterval = 7200000; // Time before getting hungry
@@ -43,5 +43,6 @@ unsigned long clockSyncMillis = 0;
 
 unsigned long currentMillis = millis(); // Clock
 bool isIdle = true; // Is puyotchi idle
+bool isSleeping = true; // Is puyotchi sleeping
 bool isActionEvent = false; // Is there a manually triggered action event ongoing
 bool isRandomEvent = false; // Is there a randomly triggered action event ongoing

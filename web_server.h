@@ -27,6 +27,9 @@ void updateWebQuery() {
   else if (req.indexOf("alarm/snooze") != -1) { snoozeAlarm(); }
   else if (req.indexOf("alarm/set") != -1) { setAlarmTime(req); }
 
+  else if (req.indexOf("feed") != -1) { feed(); }
+  else if (req.indexOf("sleep/toggle") != -1) { toggleSleep(); }
+
   else if (req.indexOf("excited") != -1) { setEvent("excited", true, 5000); }
   else if (req.indexOf("roll") != -1) { setEvent("roll", true, 5000); }
   else if (req.indexOf("look") != -1) { setEvent("look", true, 5000); }
@@ -42,6 +45,7 @@ void updateWebQuery() {
   // Fill in status values
   webPage.replace("value='food'", "value=" + String(food));
   webPage.replace("value='sleep'", "value=" + String(sleep));
+  webPage.replace("Turn light", isSleeping ? "Turn light on" : "Turn light off");
 
   // Fill in setting values
   webPage.replace("id='mute'", mute ? "id='mute' checked" : "id='mute'");

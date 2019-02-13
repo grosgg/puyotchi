@@ -11,6 +11,7 @@ void updateAlarm() {
   if (!alarmRinging && currentTime.hour() == alarmHour && currentTime.minute() == alarmMinute) {
     Serial.println("Alarm triggered!");
     alarmRinging = true;
+    goIdle(); // Wake up puyotchi
   }
 }
 
